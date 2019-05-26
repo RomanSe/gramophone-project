@@ -1,9 +1,7 @@
-SET FOREIGN_KEY_CHECKS = 0;
-
 DROP TABLE IF EXISTS users;
 
-CREATE TABLE users (
-  id                    INT(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE users(
+  id                    SERIAL,
   username              VARCHAR(50) NOT NULL,
   password              CHAR(80) NOT NULL,
   first_name            VARCHAR(50) NOT NULL,
@@ -11,21 +9,21 @@ CREATE TABLE users (
   email                 VARCHAR(50) NOT NULL,
   phone                 VARCHAR(15) NOT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+);
 
 DROP TABLE IF EXISTS roles;
 
 CREATE TABLE roles (
-  id                    INT(11) NOT NULL AUTO_INCREMENT,
+  id                   SERIAL,
   name                  VARCHAR(50) DEFAULT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+);
 
 DROP TABLE IF EXISTS users_roles;
 
 CREATE TABLE users_roles (
-  user_id               INT(11) NOT NULL,
-  role_id               INT(11) NOT NULL,
+  user_id               INTEGER NOT NULL,
+  role_id               INTEGER NOT NULL,
 
   PRIMARY KEY (user_id, role_id),
 
@@ -38,7 +36,7 @@ CREATE TABLE users_roles (
   CONSTRAINT FK_ROLE_ID FOREIGN KEY (role_id)
   REFERENCES roles (id)
   ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+);
 
 INSERT INTO roles (name)
 VALUES
