@@ -15,6 +15,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a00f9716cc.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script th:src="@{/js/vue/vue.js}"></script>
 
 </head>
 
@@ -22,6 +24,11 @@
 <header>
     <div th:replace="~{navigation :: navi(Home)}"/>
 </header>
+
+<div id="demo">
+    <p>{{message ? message : "no content"}}</p>
+    <input v-model="message">
+</div>
 
 <main>
     <div class="container">
@@ -101,6 +108,6 @@
         </div>
     </div>
 </main>
-
+<script th:src="@{/js/main.js}"></script>
 </body>
 </html>

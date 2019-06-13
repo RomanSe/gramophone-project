@@ -21,14 +21,15 @@ public class TrackInfoController {
     @Value("${comment.min.length}")
     private Integer MIN_COMMENT;
 
+    @Autowired
     private TrackService trackService;
     private UserService userService;
     private CommentService commentService;
 
-    @Autowired
-    public void setTrackService(TrackService trackService) {
-        this.trackService = trackService;
-    }
+//    @Autowired
+//    public void setTrackService(TrackService trackService) {
+//        this.trackService = trackService;
+//    }
 
     @Autowired
     public void setUserService(UserService userService) {
