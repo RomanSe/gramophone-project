@@ -1,6 +1,7 @@
 package com.geekbrains.gramophone.rest;
 
 import com.geekbrains.gramophone.entities.User;
+import com.geekbrains.gramophone.rest.DTO.Like;
 import com.geekbrains.gramophone.services.TrackService;
 import com.geekbrains.gramophone.services.UserService;
 import io.swagger.annotations.Api;
@@ -24,9 +25,9 @@ public class TrackRestController {
     TrackService trackService;
 
     @PostMapping("track/{id}/like")
-    public ResponseEntity<?> like(@ApiParam(value = "Track id", example = "1")
+    public ResponseEntity<Like> like(@ApiParam(value = "Track id", example = "1")
                                   @PathVariable Long id,
-                                  @ApiParam(value = "User id", example = "2")
+                                     @ApiParam(value = "User id", example = "2")
                                   @RequestParam Long userId) {
         Optional<User> user = userService.findById(userId);
         if (user.isPresent()) {
@@ -34,6 +35,7 @@ public class TrackRestController {
         } else {
             return new ResponseEntity<>(null, null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return new ResponseEntity<>(null, null, HttpStatus.OK);
+        Like body = new Like(trackService.findTrackById(id).getLikes().contains(user.get()));
+        return new ResponseEntity<>(body , null, HttpStatus.OK);
     }
 }
